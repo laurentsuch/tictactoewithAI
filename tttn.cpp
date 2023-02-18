@@ -1,63 +1,46 @@
+// NxN tic-tac-toes
 #include <iostream>
 #include <cstdlib>
 using namespace std;
 
-// The following 3 functions are helper functions to convert
-// between 1D and 2D array indices.  The grid itself is stored
-// as a 1D array.  However, for printing, checking who won,
-// etc. it may be easier to write loops that generate separate
-// row/column indices (i.e. treating the array like a 2D array).
-// The functions below should be written using the hints in the
-// writeup for performing the appropriate arithmetic conversion
-// between 1D- and 2D-indices, and can then be called in any
-// of the other functions when you find yourself wanting to
-// convert one to the other.
 
+//      ------------------------  DEFINING FUNCTIONS -----------------------------
 /**
- * Helper function - Given the grid array and its dimension
+ * Given the grid array and its dimension
  *    as well as a particular row (r) and column (c), this
  *    function performs the arithmetic to convert r and c
- *    to a 1D index and returns that character in the grid.
- *    For example, for dim = 3 and r = 2, c = 1, this function
- *    should compute the corresponding index: 7 and return
- *    grid[7].
- *
- * Use this function wherever you generate, row/column
- *    indices and want to access that element in the grid.
- *    Pass the row/column indices as r and c, respectively.
+ *    to a 1D index and returns that character into the grid.
  *
  */
 char getEntryAtRC(char grid[], int dim, int r, int c);
 
 /**
- * Helper function - Given a 1D index returns the row
- * that corresponds to this 1D index.  Use this in
- * conjunction with idxToCol() anytime you have a 1D index
- * and want to convert to 2D indices.
+ * Given a 1D index returns the row that 
+ * corresponds to this 1D index.  
  */
+
+
 int idxToRow(int idx, int dim);
 
 /**
- * Helper function - Given a 1D index returns the column
- * that corresponds to this 1D index.  Use this in
- * conjunction with idxToRow() anytime you have a 1D index
- * and want to convert to 2D indices.
+ * Given a 1D index returns the column
+ * that corresponds to this 1D index.  
  */
+
 int idxToCol(int idx, int dim);
 
 
-/** Should print the tic-tac-toe board in a nice grid
- *  format as shown below:
+/** print the tic-tac-toe board in a nice grid
+ *  format
  *
  * Parameters:
- *   grid: Array of dim^2 characters representing the state
- *         of each square.  Each entry contains 'X', 'O'
- *         (the letter oh), or '?'.
+ *   grid: array of dim^2 characters representing the state
+ *         of each square.  Each entry contains 'X', 'O', or '?'.
  */
 void printTTT(char grid[], int dim);
 
 /**
- * Should check if any player has won the game yet.
+ * check if any player has won the game yet.
  *
  * Parameters:
  *   grid: Array of dim^2 characters representing the state
@@ -72,7 +55,7 @@ int checkForWinner(char grid[], int dim);
 
 
 /**
- * Should check if there is no possible way any player can win.
+ * check if there is no possible way any player can win.
  * More specifically, if there does not exist a row, column,
  * or diagonal that can still have 3 of a kind, then the game
  * will be a draw.
@@ -89,15 +72,15 @@ int checkForWinner(char grid[], int dim);
 bool checkForDraw(char grid[], int dim);
 
 /**
- * @brief Get the Ai Choice for the current player and update grid object
+ * @brief Ai Choice for the current player and update grid object
  *
  * Parameters:
  *   grid: Array of dim^2 characters representing the state
  *         of each square.  Each entry contains 'X', 'O', or '?'
  *   dim: the dim(-ension) of the tic-tac-toe board
  *   player: current player => 'X' or 'O'
- * @return true If an error occurred or a choice was unable to be made
- * @return false If a play was successfully made
+ * @return true if an error occurred or a choice was unable to be made
+ * @return false if a play was successfully made
  */
 bool getAiChoiceAndUpdateGrid(char grid[], int dim, char player);
 
@@ -112,13 +95,13 @@ bool getAiChoiceAndUpdateGrid(char grid[], int dim, char player);
  * @return true If no viable location to be played
  * @return false If a play was successfully made
  */
+
 bool getRandChoiceAndUpdateGrid(char grid[], int dim, char player);
 
 
-/**********************************************************
- *  Write your implementations for each function prototyped
- *  above in the space below
- **********************************************************/
+
+
+// -----------------------  FUNCTIONALITY -----------------------
 
 char getEntryAtRC(char grid[], int dim, int r, int c)
 {
@@ -441,7 +424,7 @@ bool getAiChoiceAndUpdateGrid(char grid[], int dim, char player)
 return true;
 }
 
-// Complete...Do not alter
+
 bool getRandChoiceAndUpdateGrid(char grid[], int dim, char player)
 {
     int start = rand()%(dim*dim);
@@ -460,9 +443,7 @@ bool getRandChoiceAndUpdateGrid(char grid[], int dim, char player)
 }
 
 
-/**********************************************************
- *  Complete the indicated parts of main(), below.
- **********************************************************/
+
 int main()
 {
     // This array holds the actual board/grid of X and Os. It is sized
@@ -496,19 +477,6 @@ int main()
     printTTT(tttdata, dim);
 
     while(!done) {
-
-        //**********************************************************
-        // Get the current player's input (i.e. the location they want to
-        // choose to place their mark [X or O]) or choice of AI or Random
-        // location and update the tttdata array.
-        // Be sure to follow the requirements defined in the guide/writeup
-        // for quitting immediately if the user input is out-of-bounds
-        // (i.e. not in the range 0 to dim_sq-1 nor -1 nor -2) as well as
-        // continuing to prompt for an input if the user chooses locations
-        // that have already been chosen (already marked with an X or O).
-        //**********************************************************
-
-        // Add your code here for getting input
         int userChoice; 
         int numberTotalIndices = (dim*dim) -1;
         cout << "Player " << player << " enter your square choice [0-" << numberTotalIndices << "], -1 (AI), or -2 (Random):";
@@ -536,33 +504,8 @@ int main()
         }
         
         
-        
-
-
-
-        // Show the updated board if the user eventually chose a valid location
-        // (i.e. you should have quit the loop and program by now without any
-        //  other output message if the user chosen an out-of-bounds input).
         printTTT(tttdata, dim);
 
-        //**********************************************************
-        // Complete the body of the while loop to process the input that was just
-        //  received to check for a winner or draw and update other status, as
-        //  needed.
-        //
-        // To match our automated checkers' expected output, you must output
-        // one of the messages defined above using *one* of the cout commands
-        // (under the appropriate condition) below:
-        //   cout << xwins_msg << endl;  OR
-        //   cout << owins_msg << endl;  OR
-        //   cout << draw_msg << endl;
-        //
-        // Note: Our automated checkers will examine a specific number of lines
-        //  at the end of the program's output and expect to see the updated board
-        //  and game status message.  You may certainly add some debug print
-        //  statements during development but they will need to be removed to
-        //  pass the automated checks.
-        //**********************************************************
       int winner = checkForWinner(tttdata, dim);
       // if there is a winner, return according message for each player 
       if(winner == 1) {
