@@ -1,5 +1,6 @@
 // NxN tic-tac-toe game with an AI aspect 
-// AI either finds the winning spot, or finds a way to block.
+// AI either finds the winning spot, or finds a way to block. (best move) 
+// used without minimax
 #include <iostream>
 #include <cstdlib>
 using namespace std;
